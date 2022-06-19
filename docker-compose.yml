@@ -1,0 +1,146 @@
+version: "3.7"
+services:
+  radarr:
+    container_name: radarr
+    image: cr.hotio.dev/hotio/radarr:release
+    restart: unless-stopped
+    ports:
+      - ${radarrPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/radarr:/config
+      - ${data}:/data
+    labels:
+      - flame.type=application       
+      - flame.name=Radarr            
+      - flame.url=${radarrWeb}
+      - flame.icon=custom
+  sonarr:
+    container_name: sonarr
+    image: cr.hotio.dev/hotio/sonarr:release
+    restart: unless-stopped
+    ports:
+      - ${sonarrPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/sonarr:/config
+      - ${data}:/data
+    labels:
+      - flame.type=application       
+      - flame.name=Sonarr            
+      - flame.url=${sonarrWeb}
+      - flame.icon=custom
+  lidarr:
+    container_name: lidarr
+    image: cr.hotio.dev/hotio/lidarr:release
+    restart: unless-stopped
+    ports:
+      - ${lidarrPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/lidarr:/config
+      - ${data}:/data
+    labels:
+      - flame.type=application       
+      - flame.name=Lidarr            
+      - flame.url=${lidarrWeb}
+      - flame.icon=custom
+  readarr:
+    container_name: readarr
+    image: cr.hotio.dev/hotio/readarr:nightly
+    restart: unless-stopped
+    ports:
+      - ${readarrPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/readarr:/config
+      - ${data}:/data
+    labels:
+      - flame.type=application       
+      - flame.name=Readarr            
+      - flame.url=${readarrWeb}
+      - flame.icon=custom
+  prowlarr:
+    container_name: prowlarr
+    image: cr.hotio.dev/hotio/prowlarr:nightly
+    restart: unless-stopped                                                                                   
+    ports:
+      - ${prowlarrPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/prowlarr:/config
+      - ${data}:/data
+    labels:
+      - flame.type=application       
+      - flame.name=Prowlarr            
+      - flame.url=${prowlarrWeb}
+      - flame.icon=custom
+  qbittorrent:
+    container_name: qbittorrent
+    image: cr.hotio.dev/hotio/qbittorrent:release
+    restart: unless-stopped             
+    ports:
+      - ${qbittorrentPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/qbittorrent:/config
+      - ${torrents}:/data/torrents
+    labels:
+      - flame.type=application       
+      - flame.name=qBittorrent           
+      - flame.url=${qbittorrentWeb}
+      - flame.icon=custom
+  jellyfin:
+    container_name: jellyfin
+    image: cr.hotio.dev/hotio/jellyfin:release
+    restart: unless-stopped                                                                                   
+    ports:
+      - ${jellyfinPort}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - UMASK=${UMASK}
+      - TZ=${tz}
+    volumes:
+      - ${config}/jellyfin:/config
+      - ${media}:/data/media
+    labels:
+      - flame.type=application 
+      - flame.name=Jellyfin           
+      - flame.url=${jellyfinWeb}
+      - flame.icon=custom
+  flame:
+    image: pawelmalak/flame
+    container_name: flame
+    restart: unless-stopped
+    volumes:
+      - ${config}/flame:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock 
+    ports:
+      - ${flamePort}
+    environment:
+      - PASSWORD=${flamePass}

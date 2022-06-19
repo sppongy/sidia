@@ -1,0 +1,26 @@
+# Ports
+radarrPort=7878:7878
+sonarrPort=8989:8989
+lidarrPort=8686:8686
+readarrPort=8787:8787
+prowlarrPort=9696:9696
+qbittorrentPort=8080:8080
+jellyfinPort=8096:8096
+flamePort=5005:5005
+
+# ID 
+PUID=1000
+PGID=1000
+UMASK=002
+
+# Time Zone
+tz=Canada/Eastern
+
+# Passwords
+flamePass=pass
+
+# Locations (I highly reccomend not changing these)
+config=/docker/appdata
+data=/data
+torrents=/data/torrents
+media=/data/media
