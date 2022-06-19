@@ -33,8 +33,7 @@
 
 [Installation](#installation)
 >[Docker](#docker)\
-[Permissions](#permissions)\
-[Notes](#notes)
+[Permissions](#permissions)
 
 [App Setup](#app-setup)
 >[Star apps](#star-apps)\
@@ -42,6 +41,8 @@
 [qBittorrent](#qbittorrent)\
 [Jellyfin](#jellyfin)\
 [Flame](#flame)
+
+[Notes](#notes)
 
 ---
 ## Info
