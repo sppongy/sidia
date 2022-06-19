@@ -27,14 +27,21 @@
 
 <h1 style="text-align: center"> SIDIA  A SImple MeDIA server </h1>
 
-[Info](Info)
->[Applications](Applications)\
-[Folder Structure](Folder-structure)
+[Info](#info)
+>[Applications](#applications)\
+[Folder Structure](#folder-structure)
 
-[Installation](installation)
->[Docker](Docker)\
-[Permissions](Permissions)\
-[Notes](Notes)
+[Installation](#installation)
+>[Docker](#docker)\
+[Permissions](#permissions)\
+[Notes](#notes)
+
+[App Setup](#app-setup)
+>[Star apps](#star-apps)\
+[Prowlarr](#prowlarr)\
+[qBittorrent](#qbittorrent)\
+[Jellyfin](#jellyfin)\
+[Flame](#flame)
 
 ---
 ## Info
@@ -51,7 +58,7 @@ Jellyfin		Media Center/Viewer		8096
 Flame			Startpage			5005
 ```
 ---
-### Folder-structure
+### Folder structure
 ```
 /data
 ├── torrents
@@ -83,6 +90,11 @@ Flame			Startpage			5005
 ```
 ---
 ## Installation
+
+Clone the repo and put in anywhere, i recommend in /docker
+```
+git clone https://github.com/sppongy/sidia
+```
 ### Docker
 we'll use docker-compose to manage our docker containers
 >make sure to check over the env_example file
@@ -101,27 +113,29 @@ sudo chmod -R a=,a+rX,u+w,g+w /data
 ```
 ---
 ## App Setup
-### Star apps(sonarr, radarr, lidarr, readarr)
+### Star apps
+> sonarr, radarr, lidarr, readarr
+
 Adding indexers is done through prowlarr\
 To add a download client simply go to setting/download clients/ and then choose qbittorent. the "host" is qbittorrent
 and the port is whatever you chose in the env file (default is 8080) 
+### Prowlarr
+Add indexers of your choice\
+to add prowlarr to other apps go to settings/apps and select the app you would like to add it to\
+it will ask for an api key that you can find in settings/general in whatever app you chose
 ### qBittorrent 
 The default credentials are
 ```
 user: admin
 pass: adminadmin
 ```
-### Prowlarr
-Add indexers of your choice\
-to add prowlarr to other apps go to settings/apps and select the app you would like to add it to\
-it will ask for an api key that you can find in settings/general in whatever app you chose
 ### Jellyfin
 You will be prompted with a setup wizard upon visiting jellyfin\
 You will be givin the option to add your libraries,
 > these libraries will by default be /data/media/{movies\shows\music\books}
 
 ### Flame
-You can add applications/bookmarks to flame by going to http://localhost:5005/applications\
+You can add applications/bookmarks to flame by going to http://localhost:5005/applications  
 Settings will be found at http://localhost:5005/settings
 > if you changed the port for flame in the env file then substitute that for 5005
 
